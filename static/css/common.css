@@ -1,0 +1,138 @@
+/*-------------------------------------------- 布局 -------------------------------------------*/
+a{
+    text-decoration:none;
+    color: #333333;
+}
+
+::-webkit-scrollbar {           /* 这是针对缺省样式 (必须的) */
+    width: 0px;
+    height: 12px;
+}
+::-webkit-scrollbar-track {     /* 滚动条的滑轨背景颜色 */
+    background-color: #BCE8F1;
+    border: 0px;
+    border-radius: 2em;
+}
+::-webkit-scrollbar-thumb {     /* 滑块颜色 */
+    background-color: #2AC845;
+    border: 0px;
+    border-radius: 2em;
+}
+::-webkit-scrollbar-button {    /* 滑轨两头的监听按钮颜色 */
+    width: 0em;
+    background-color: #A0CFFF;
+}
+::-webkit-scrollbar-corner {    /* 横向滚动条和纵向滚动条相交处尖角的颜色 */
+    background-color: black;
+}
+
+.cus-icon{
+    vertical-align: middle;
+    margin-right: 5px;
+    width: 24px;
+    text-align: center;
+    font-size: 18px;
+}
+.min-container{
+    min-width: 700px;
+}
+.el-header{
+    background-color: #EEEEEE;
+    color: #333333;
+}
+.el-aside{
+    color: #333;
+}
+.layout-close{
+    color: #FF6666;
+    font-weight: 800;
+}
+.layout-close i {
+    color: #2AC845;
+    font-weight: 400;
+    -webkit-transition: -webkit-transform 0.4s ease-out; 
+    -moz-transition: -moz-transform 0.4s ease-out; 
+    transition: transform 0.4s ease-out; 
+}
+.layout-close:hover i {
+    color: #FC5C7D;
+    font-weight: 900;
+    -webkit-transform: rotate(135deg); 
+    -moz-transform: rotate(135deg); 
+    transform: rotate(135deg); 
+}
+
+/*-------------------------------------------- 公用 -------------------------------------------*/
+
+.text-right{
+    text-align: right;
+}
+.text-center{
+    text-align: center;
+}
+.text-left{
+    text-align: left;
+}
+.text-primary{
+    color: #007AFF;
+}
+.text-info{
+    color: #9FA4AD;
+}
+.padding-5{
+    padding: 5px;
+}
+.padding-lr-5{
+    padding: 0px 5px;
+}
+.padding-ub-5{
+    padding: 5px 0px;
+}
+.padding-10{
+    padding: 10px;
+}
+.padding-lr-10{
+    padding: 0px 10px;
+}
+.padding-ub-10{
+    padding: 10px 0px;
+}
+.padding-20{
+    padding: 20px;
+}
+.padding-lr-20{
+    padding: 0px 20px;
+}
+.padding-ub-20{
+    padding: 20px 0px;
+}
+.margin-10{
+    margin: 10px;
+}
+.margin-lr-10{
+    margin: 0px 10px;
+}
+.margin-ub-10{
+    margin: 10px 0px;
+}
+.margin-20{
+    margin: 20px;
+}
+.margin-lr-20{
+    margin: 0px 20px;
+}
+.margin-ub-20{
+    margin: 20px 0px;
+}
+.height-full{
+    height: 100%;
+}
+.width-full{
+    width: 100%;
+}
+.bg-eee{
+    background-color: #EEEEEE;
+}
+.hover-bg-primary:hover{
+    background-color: #cce2f9;
+}
