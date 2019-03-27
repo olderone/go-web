@@ -3,112 +3,134 @@
 <head>
    	<title>{{.WebName}}</title>
 	<!-- 引入样式 -->
-	<link rel="stylesheet" href="/static/css/element.css">
+	<link rel="stylesheet" href="/static/css/bootstrap.min.css">
 	<!-- 引入组件库 -->
-	<script src="/static/js/element.js"></script>
+	<script src="/static/js/jquery-3.3.1.min.js"></script>
+	<script src="/static/js/bootstrap.min.js"></script>
+	<script src="/static/js/vue.js"></script>
 </head>
 <body class="no-skin">
-<el-container>
-  <el-header>Header</el-header>
-  <el-main>Main</el-main>
-</el-container>
-
-<el-container>
-  <el-header>Header</el-header>
-  <el-main>Main</el-main>
-  <el-footer>Footer</el-footer>
-</el-container>
-
-<el-container>
-  <el-aside width="200px">Aside</el-aside>
-  <el-main>Main</el-main>
-</el-container>
-
-<el-container>
-  <el-header>Header</el-header>
-  <el-container>
-    <el-aside width="200px">
-		<el-menu
-		      default-active="2"
-		      class="el-menu-vertical-demo"
-		      @open="handleOpen"
-		      @close="handleClose">
-		      <el-submenu index="1">
-		        <template slot="title">
-		          <i class="el-icon-location"></i>
-		          <span>导航一</span>
-		        </template>
-		        <el-menu-item-group>
-		          <template slot="title">分组一</template>
-		          <el-menu-item index="1-1">选项1</el-menu-item>
-		          <el-menu-item index="1-2">选项2</el-menu-item>
-		        </el-menu-item-group>
-		        <el-menu-item-group title="分组2">
-		          <el-menu-item index="1-3">选项3</el-menu-item>
-		        </el-menu-item-group>
-		        <el-submenu index="1-4">
-		          <template slot="title">选项4</template>
-		          <el-menu-item index="1-4-1">选项1</el-menu-item>
-		        </el-submenu>
-		      </el-submenu>
-		      <el-menu-item index="2">
-		        <i class="el-icon-menu"></i>
-		        <span slot="title">导航二</span>
-		      </el-menu-item>
-		      <el-menu-item index="3" disabled>
-		        <i class="el-icon-document"></i>
-		        <span slot="title">导航三</span>
-		      </el-menu-item>
-		      <el-menu-item index="4">
-		        <i class="el-icon-setting"></i>
-		        <span slot="title">导航四</span>
-		      </el-menu-item>
-		    </el-menu>
-	</el-aside>
-    <el-main>Main</el-main>
-  </el-container>
-</el-container>
-
-<el-container>
-  <el-header>Header</el-header>
-  <el-container>
-    <el-aside width="200px">Aside</el-aside>
-    <el-container>
-      <el-main>Main</el-main>
-      <el-footer>Footer</el-footer>
-    </el-container>
-  </el-container>
-</el-container>
-
-<el-container>
-  <el-aside width="200px">Aside</el-aside>
-  <el-container>
-    <el-header>Header</el-header>
-    <el-main>Main</el-main>
-  </el-container>
-</el-container>
-
-<el-container>
-  <el-aside width="200px">Aside</el-aside>
-  <el-container>
-    <el-header>Header</el-header>
-    <el-main>Main</el-main>
-    <el-footer>Footer</el-footer>
-  </el-container>
-</el-container>
-
-
+	<div id="app">
+		<div id="header">
+			<nav class="navbar navbar-default">
+				<div class="container-fluid">
+				    <!-- Brand and toggle get grouped for better mobile display -->
+				    <div class="navbar-header">
+				      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				        <span class="sr-only">Toggle navigation</span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				      </button>
+				      <a class="navbar-brand" href="#">首页</a>
+				    </div>
+				
+				    <!-- Collect the nav links, forms, and other content for toggling -->
+				    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				      <ul class="nav navbar-nav">
+				        
+				        <li class="dropdown">
+				          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">业务模块管理 <span class="caret"></span></a>
+				          <ul class="dropdown-menu">
+				            <li><a href="#">医院导诊模块</a></li>
+				     
+				            <li role="separator" class="divider"></li>
+				            <li><a href="#">石油化工模块</a></li>
+				            <li role="separator" class="divider"></li>
+				            <li><a href="#">购物中心模块</a></li>
+				          </ul>
+				        </li>
+						<li class="dropdown">
+				          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">公共管理 <span class="caret"></span></a>
+				          <ul class="dropdown-menu">
+				            <li><a href="#">地图设备数据</a></li>
+				     		           
+				          </ul>
+				        </li>
+						<li class="dropdown">
+				          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">产品管理 <span class="caret"></span></a>
+				          <ul class="dropdown-menu">
+				            <li><a href="#">光想指南</a></li>
+				     
+				            <li role="separator" class="divider"></li>
+				            <li><a href="#">光享导诊</a></li>
+				            <li role="separator" class="divider"></li>
+				            <li><a href="#">SDK管理</a></li>
+				          </ul>
+				        </li>
+						
+				      </ul>
+				      <form class="navbar-form navbar-left">
+				        <div class="form-group">
+				          <input type="text" v-model="name" class="form-control" placeholder="Search">
+				        </div>
+				        <button type="submit" class="btn btn-default"> ${search}</button>
+				      </form>
+				      <ul class="nav navbar-nav navbar-right">
+				        <li><a href="#">Link</a></li>
+				        <li class="dropdown">
+				          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+				          <ul class="dropdown-menu">
+				            <li><a href="#">Action</a></li>
+				            <li><a href="#">Another action</a></li>
+				            <li><a href="#">Something else here</a></li>
+				            <li role="separator" class="divider"></li>
+				            <li><a href="#">Separated link</a></li>
+				          </ul>
+				        </li>
+				      </ul>
+				    </div><!-- /.navbar-collapse -->
+				</div><!-- /.container-fluid -->
+			</nav>
+		</div>
+		<div id="main">
+			<div>
+				<div id="resText"></div>
+			</div>
+		</div>
+	</div>	
 </body>
-<script>
-  export default {
-    methods: {
-      handleOpen(key, keyPath) {
-        console.log(key, keyPath);
-      },
-      handleClose(key, keyPath) {
-        console.log(key, keyPath);
-      }
+<script type="text/javascript">
+
+var vue = new Vue(
+{
+	delimiters: ['${', '}'],
+    el: '#app',
+    data:
+    {
+       	search:'搜索',
+		name:'',
+		parkList:{},
+    },
+    mounted()
+    {
+      this.getParkList()
+    },
+    methods:
+    {
+		getParkList(){
+			let _this = this
+			$.ajax({
+	            type: "POST",
+	            url: "/admin/park/getParkList",
+	            data: {name:_this.name},
+	            dataType: "json",
+				async:true,	//是否异步
+	            success: function(data){
+                   $('#resText').empty();   //清空resText里面的所有内容
+                   var html = '<div style="color:red;"><h1>' + data
+                                   + '</h1><p class="para">' + data+ '</p></div>'; 
+                   //$.each(data, function(commentIndex, comment){
+                     //    html += '<div class="comment"><h6>' + comment['username']
+                       //            + ':</h6><p class="para"' + comment['content']
+                         //          + '</p></div>';
+                  // });
+                   $('#resText').html(html);
+                }
+         	});
+		},
+       
     }
-  }
+});
 </script>
 </html>

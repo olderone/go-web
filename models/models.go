@@ -1,27 +1,19 @@
-package main
+package models
 
+import (
+	"time"
 
-import "github.com/astaxie/beego/orm"
+	"github.com/astaxie/beego/orm"
+)
 
-type Apis struct {
-	id int
-	name string
-}
+func RegistDB() {
+	// 设置为 UTC 时间
+	orm.DefaultTimeLoc = time.UTC
+	//注册 model
+	orm.RegisterModel(new(HospInfo), new(AdminUsers))
+	//注册驱动
+	orm.RegisterDriver("mysql", orm.DRMySQL)
+	//注册默认数据库
+	orm.RegisterDataBase("default", "mysql", "root:root@/ec_hosp?charset=utf8") //密码为空格式
 
-type Paras struct {
-	id int
-	api_id int
-	p_name string
-	p_value string
-}
-
-type Headers struct {
-	id int 
-	api_id int
-	h_name string
-	h_value string
-}
-
-func init (){
-	orm.RegisterModels(new(Apis),new(Paras),new(Headers))
 }
