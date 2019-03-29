@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"fmt"
 	"web/models"
 
 	"github.com/astaxie/beego"
@@ -18,6 +19,7 @@ func (c *ParkController) GetParkList() {
 	if err == nil {
 		c.Data["List"] = dataList
 		c.Data["json"] = "添加成功"
+		fmt.Println("Mark changed his speciality")
 		c.ServeJSON()
 	}
 	logs.Info("dataList :", dataList)
