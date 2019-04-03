@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"fmt"
+	"encoding/json"
 	"web/models"
 
 	"github.com/astaxie/beego"
@@ -17,11 +17,27 @@ func (c *ParkController) GetParkList() {
 
 	dataList, err := models.QueryAllParkInfo()
 	if err == nil {
-		c.Data["List"] = dataList
-		c.Data["json"] = "添加成功"
-		fmt.Println("Mark changed his speciality")
+		c.Data["json"] = dataList
 		c.ServeJSON()
 	}
 	logs.Info("dataList :", dataList)
+
+}
+
+//查询单条数据
+func (this *ParkController) GetOnePark() {
+	//获得id
+	id, _ := this.GetInt32("Id", 1)
+	ParkOne, err := models.GetParkById(id)
+	if err == nil {
+		json.Unmarshal(this.Ctx.Input.RequestBody, &ParkOne)
+		this.Data["json"] = ParkOne
+		this.ServeJSON()
+	} else {
+		tmpHospInfo := &models.HospInfo{}
+
+		this.Data["json"] = tmpHospInfo
+		this.ServeJSON()
+	}
 
 }
