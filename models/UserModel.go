@@ -19,6 +19,8 @@ type AdminUsers struct {
 func QueryAllUserInfo() (dataList []interface{}, err error) {
 	var list []AdminUsers
 	o := orm.NewOrm()
+	o.Using("default") // 默认使用 default，你可以指定为其他数据库
+
 	qs := o.QueryTable(new(AdminUsers))
 
 	//查询数据

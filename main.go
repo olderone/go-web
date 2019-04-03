@@ -1,7 +1,7 @@
 package main
 
 import (
-	"web/models"
+	"time"
 	_ "web/routers"
 
 	"github.com/astaxie/beego"
@@ -11,8 +11,13 @@ import (
 
 //引入数据模型
 func init() {
-	// 注册数据库
-	models.RegistDB()
+
+	// 设置为 UTC 时间
+	orm.DefaultTimeLoc = time.UTC
+	//注册驱动
+	orm.RegisterDriver("mysql", orm.DRMySQL)
+	//注册默认数据库
+	orm.RegisterDataBase("default", "mysql", "root:root@/ec_hosp?charset=utf8") //密码为空格式
 }
 
 func main() {

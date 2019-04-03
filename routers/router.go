@@ -12,4 +12,5 @@ func init() {
 
 	ParkController := &controllers.ParkController{}
 	beego.Router("/admin/park/getParkList", ParkController, "post:GetParkList")
+	beego.Router("/admin/park/GetOnePark", ParkController, "post:GetOnePark")
 }
