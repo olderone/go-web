@@ -41,3 +41,17 @@ func (this *ParkController) GetOnePark() {
 	}
 
 }
+
+// 版本控制
+func (this *ParkController) HospInstallPack() {
+	appver := this.GetString("appver")
+	insPak, err := models.GetInstallPak(appver)
+	if err != nil {
+		this.Data["json"] = map[string]interface{}{"status": 1, "msg": "没有数据", "data": err}
+	} else {
+
+		this.Data["json"] = map[string]interface{}{"status": 0, "msg": "没有数据", "data": insPak}
+	}
+
+	this.ServeJSON()
+}

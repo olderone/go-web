@@ -11,6 +11,7 @@
 	
 	<style>
 		a{cursor:pointer;text-decoration:none;}
+		.onep{width:5.5%;}
 	</style>
 </head>
 <body class="no-skin">
@@ -95,11 +96,11 @@
 
 				<table style="width:100%;">
                   <tr>
-                    <th class="onep">序号</th>
+                    <th class="twop">序号</th>
                     <th class="twop">园区名称</th>
-                    <th class="onep">地址</th>
-                    <th class="onep">地图名称</th>
-                    <th class="onep">地图包大小</th>
+                    <th class="twop">地址</th>
+                    <th class="twop">地图名称</th>
+                    <th class="twop">地图包大小</th>
                     <th class="twop">经度</th>
                     <th class="twop">纬度</th>
                     <th class="thrp">操作</th>
@@ -113,7 +114,53 @@
                     <td>${base.Lon}</td>
                     <td>${base.Lat}</td>
                     <td>
-                      <a @click="startOneImg(base)" type="text" size="small">启用</a>
+                      <a @click="startOneImg(base)" type="text" size="small">编辑</a>
+                      <a @click="deleteOneImg(base)" type="text" size="small">删除</a>
+                    </td>
+                  </tr>
+                </table>
+			</div>
+			<div style="width:100%;margin-left:15px;float:left;margin-top:15px;">
+				<p></p>
+				<table style="width:100%;">
+                  <tr>
+                    <th class="onep">序号</th>
+                    <th class="onep">名称</th>
+                    <th class="onep">FID</th>
+                    <th class="onep">MapNo</th>
+                    <th class="onep">Type</th>
+                    <th class="onep">Floor</th>
+                    <th class="onep">Room</th>
+                    <th class="onep">OrgZoom</th>
+                    <th class="onep">OrgNo</th>
+                    <th class="onep">OrgName</th>
+                    <th class="onep">ParkZoom</th>
+                    <th class="onep">Height</th>
+                    <th class="onep">X</th>
+                    <th class="onep">Y</th>
+                    <th class="onep">面积</th>
+                    <th>图片</th>
+                    <th class="onep">操作</th>
+                  </tr>
+                  <tr v-for="(base,index) in extraimg" style="height:40px;line-height:40px;">
+                    <td>${index+1}</td>
+                    <td>${base.Name}</td>
+                    <td>${base.Fid}</td>
+                    <td>${base.MapNo}</td>
+                    <td>${base.Type}</td>
+                    <td>${base.Floor}</td>
+                    <td>${base.Room}</td>
+                    <td>${base.OrgZoom}</td>
+                    <td>${base.OrgNo}</td>
+                    <td>${base.OrgName}</td>
+                    <td>${base.ParkZoom}</td>
+                    <td>${base.Height}</td>
+                    <td>${base.X}</td>
+                    <td>${base.Y}</td>
+                    <td>${base.Area}</td>
+                    <td><img style="width:50%;" :src="base.Url" /></td>
+                    <td>
+                      <a @click="startOneImg(base)" type="text" size="small">编辑</a>
                       <a @click="deleteOneImg(base)" type="text" size="small">删除</a>
                     </td>
                   </tr>
@@ -133,11 +180,15 @@ var vue = new Vue(
        	search:'搜索',
 		name:'',
 		parkList:{},
+		extraimg:{},
     },
     mounted()
     {
       this.getParkList()
       this.getParkOne()
+      this.getInsPak()
+      this.getExtraImg()
+      this.getCityList()
     },
     methods:
     {
@@ -145,7 +196,7 @@ var vue = new Vue(
 			let _this = this
 			$.ajax({
 	            type: "POST",
-	            url: "/admin/park/getParkList",
+	            url: "/api/v1/hospList",
 	            data: {name:_this.name},
 	            dataType: "json",
 				async:true,	//是否异步
@@ -173,6 +224,74 @@ var vue = new Vue(
 	            dataType: "json",
 				async:true,	//是否异步
 	            success: function(data){
+                   $('#resText').empty();   //清空resText里面的所有内容
+                   var html = '<div style="color:red;"><h1>' + data
+                                   + '</h1><p class="para">' + data+ '</p></div>'; 
+                   //$.each(data, function(commentIndex, comment){
+                     //    html += '<div class="comment"><h6>' + comment['username']
+                       //            + ':</h6><p class="para"' + comment['content']
+                         //          + '</p></div>';
+                  // });
+                   $('#resText').html(html);
+                }
+         	});
+		},
+		
+		getInsPak(){
+			let _this = this
+			$.ajax({
+	            type: "POST",
+	            url: "/api/v1/hospInstallPack",
+	            data: {appver:'0.8'},
+	            dataType: "json",
+				async:true,	//是否异步
+	            success: function(data){
+                   $('#resText').empty();   //清空resText里面的所有内容
+                   var html = '<div style="color:red;"><h1>' + data
+                                   + '</h1><p class="para">' + data+ '</p></div>'; 
+                   //$.each(data, function(commentIndex, comment){
+                     //    html += '<div class="comment"><h6>' + comment['username']
+                       //            + ':</h6><p class="para"' + comment['content']
+                         //          + '</p></div>';
+                  // });
+                   $('#resText').html(html);
+                }
+         	});
+		},
+		
+		getExtraImg(){
+			let _this = this
+			$.ajax({
+	            type: "POST",
+	            url: "/api/v1/hospExtraImg",
+	            data: {hospNo:147457},
+	            dataType: "json",
+				async:true,	//是否异步
+	            success: function(data){
+					_this.extraimg = data.data
+                   $('#resText').empty();   //清空resText里面的所有内容
+                   var html = '<div style="color:red;"><h1>' + data
+                                   + '</h1><p class="para">' + data+ '</p></div>'; 
+                   //$.each(data, function(commentIndex, comment){
+                     //    html += '<div class="comment"><h6>' + comment['username']
+                       //            + ':</h6><p class="para"' + comment['content']
+                         //          + '</p></div>';
+                  // });
+                   $('#resText').html(html);
+                }
+         	});
+		},
+		
+		getCityList(){
+			let _this = this
+			$.ajax({
+	            type: "POST",
+	            url: "/api/v1/getCityList",
+	            data: {hospNo:147457},
+	            dataType: "json",
+				async:true,	//是否异步
+	            success: function(data){
+					
                    $('#resText').empty();   //清空resText里面的所有内容
                    var html = '<div style="color:red;"><h1>' + data
                                    + '</h1><p class="para">' + data+ '</p></div>'; 

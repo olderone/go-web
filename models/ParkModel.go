@@ -27,6 +27,16 @@ type HospInfo struct {
 	UpdatedAt  int32  //更新时间
 }
 
+type InsPak struct {
+	Id int32 `orm:"auto"`
+	//VersionName string `orm:"size(32)"`  //版本名称
+	//UpdateCont  string `orm:"size(255)"` //更新内容
+	Url string `orm:"size(255)"` //下载地址
+	//UrlQiniu    string `orm:"size(255)"` //七牛云下载地址
+	//PakSize     int32  //包大小
+	//IsForce     int8   //是否强制更新
+}
+
 //查询数据
 func QueryAllParkInfo() (dataList []interface{}, err error) {
 	var list []HospInfo
@@ -51,4 +61,49 @@ func GetParkById(id int32) (v *HospInfo, err error) {
 		return v, nil
 	}
 	return nil, err
+}
+
+// 安装包
+func GetInstallPak(appver string) (ip InsPak, err error) {
+	o := orm.NewOrm()
+
+	//num, err := o.Raw("SELECT id,url FROM hosp_version WHERE apk_name > ? ORDER BY created_at DESC LIMIT 1, 2", '1.0').QueryRow(&ip)
+	//var users []User
+	//res, err := o.Raw("SELECT  id, url FROM hosp_version WHERE id > ?", appver).Exec()
+	error := o.Raw("SELECT  id, url FROM hosp_version WHERE version_name > ?", appver).QueryRow(&ip)
+
+	return ip, error
+
+}
+
+//func query() {
+//	db, err := sql.Open("mysql", "root:root@/golang?charset=utf8")
+//	checkErr(err)
+
+//	rows, err := db.Query("SELECT * FROM user")
+//	checkErr(err)
+
+//	//    //普通demo
+//	for rows.Next() {
+//		var userid int
+//		var username string
+//		var userage int
+//		var usersex int
+
+//		rows.Columns()
+//		err = rows.Scan(&userid, &username, &userage, &usersex)
+//		checkErr(err)
+
+//		fmt.Println(userid)
+//		fmt.Println(username)
+//		fmt.Println(userage)
+//		fmt.Println(usersex)
+//	}
+//}
+
+func checkErr(err error) {
+	if err != nil {
+		panic(err)
+	}
+
 }
