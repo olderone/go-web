@@ -12,7 +12,7 @@ type HospInfo struct {
 	HospNo     int32  //生日
 	Name       string `orm:"size(32)"`  //性别
 	Intro      string `orm:"size(500)"` //Email
-	Url        string `orm:"size(255)"` //电话
+	ImgUrl     string `orm:"size(255)"` //电话
 	MapName    string `orm:"size(255)"` //性别
 	FmapUrl    string `orm:"size(500)"` //Email
 	MapUrl     string `orm:"size(255)"` //电话

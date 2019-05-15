@@ -20,4 +20,18 @@ func init() {
 
 	AddrController := &controllers.AddrController{}
 	beego.Router("/api/v1/getCityList", AddrController, "post:GetCityList")
+
+	ChartController := &controllers.ChartController{}
+	beego.Router("/chartRoom",ChartController)
+	beego.Router("/join",ChartController,"post:Join")
+
+	// Long polling.
+	LongPollingController := &controllers.LongPollingController{}
+	beego.Router("/lp",LongPollingController, "get:Join")
+	beego.Router("/lp/post", LongPollingController)
+	beego.Router("/lp/fetch", LongPollingController, "get:Fetch")
+
+	// WebSocket.
+	beego.Router("/ws", &controllers.WebSocketController{})
+	beego.Router("/ws/join", &controllers.WebSocketController{}, "get:Join")
 }
