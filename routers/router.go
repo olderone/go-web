@@ -32,6 +32,11 @@ func init() {
 	beego.Router("/lp/fetch", LongPollingController, "get:Fetch")
 
 	// WebSocket.
-	beego.Router("/ws", &controllers.WebSocketController{})
+	beego.Router("/web/ws", &controllers.WebSocketController{})
 	beego.Router("/ws/join", &controllers.WebSocketController{}, "get:Join")
+
+	// notebook
+	beego.Router("/notebook", &controllers.NotebookController{}, "get:Notebook")
+	beego.Router("/notebook/task/", &controllers.TaskController{}, "get:ListTasks;post:NewTask")
+	beego.Router("/notebook/task/:id:int", &controllers.TaskController{}, "get:GetTask;put:UpdateTask")
 }
