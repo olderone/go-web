@@ -82,7 +82,7 @@ func (this *ChartController) Join() {
 	case "longpolling":
 		this.Redirect("/lp?uname="+uname, 302)
 	case "websocket":
-		this.Redirect("/ws?uname="+uname, 302)
+		this.Redirect("/web/ws?uname="+uname, 302)
 	default:
 		this.Redirect("/", 302)
 	}

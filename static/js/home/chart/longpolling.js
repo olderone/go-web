@@ -23,10 +23,13 @@ var fetch = function () {
             case 2: // MESSAGE
                 var username = document.createElement('strong');
                 var content = document.createElement('span');
+                var time = document.createElement('p');
 
                 username.innerText = event.User;
                 content.innerText = event.Content;
+                time.innerText = event.Time;
 
+                li.appendChild(time);
                 li.appendChild(username);
                 li.appendChild(document.createTextNode(': '));
                 li.appendChild(content);

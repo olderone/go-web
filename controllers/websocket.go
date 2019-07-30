@@ -14,11 +14,6 @@ type WebSocketController struct {
 	baseController
 }
 
-func init() {
-	beego.Trace("开启了协程: ")
-	go chatroom()
-}
-
 // Get method handles GET requests for WebSocketController.
 func (this *WebSocketController) Get() {
 	// Safe check.
@@ -28,25 +23,29 @@ func (this *WebSocketController) Get() {
 		return
 	}
 
-	this.TplName = "home/chart//ws.html"
+	this.TplName = "home/chart/ws.html"
 	this.Data["IsWebSocket"] = true
 	this.Data["UserName"] = uname
 }
 
-// Join method handles WebSocket requests for WebSocketController.
+// Join方法处理WebSocketController的WebSocket请求.
 func (this *WebSocketController) Join() {
 	uname := this.GetString("uname")
 	if len(uname) == 0 {
 		this.Redirect("/", 302)
 		return
 	}
+	beego.Trace("收到消息啦！ ")
 
-	// Upgrade from http request to WebSocket.
+	// 从http请求升级到WebSocket.
 	ws, err := websocket.Upgrade(this.Ctx.ResponseWriter, this.Ctx.Request, nil, 1024, 1024)
 	if _, ok := err.(websocket.HandshakeError); ok {
 		http.Error(this.Ctx.ResponseWriter, "Not a websocket handshake", 400)
 		return
 	} else if err != nil {
+		beego.Trace("错误: " )
+		beego.Trace(err)
+		beego.Trace("错误: " )
 		beego.Error("Cannot setup WebSocket connection:", err)
 		return
 	}
@@ -61,6 +60,7 @@ func (this *WebSocketController) Join() {
 		if err != nil {
 			return
 		}
+		beego.Trace("收到消息: " + string(p))
 		publish <- newEvent(models.EVENT_MESSAGE, uname, string(p), "")
 	}
 }

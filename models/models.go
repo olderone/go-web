@@ -6,6 +6,6 @@ import (
 
 func init() {
 	//注册 model
-	orm.RegisterModel(new(HospInfo), new(AdminUsers))
+	orm.RegisterModel(new(HospInfo), new(AdminUsers), new(ChartRecord))
 
 }

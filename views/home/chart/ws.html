@@ -3,21 +3,27 @@
 <title>{{i18n .Lang "websocket_chatroom"}} - {{i18n .Lang "app_intro"}}</title>
 {{end}}
 {{define "body"}}
-<div class="container">
-    <h3>{{i18n .Lang "username"}}: <span id="uname">{{.UserName}}</span></h3>
-    <h4>{{i18n .Lang "send_box"}}:</h4>
-    <form class="form-inline">
-        <div class="col-md-6 form-group">
-            <input id="sendbox" type="text" class="form-control" onkeydown="if(event.keyCode==13)return false;" required>
-        </div>
-        <button id="sendbtn" type="button" class="btn btn-default">{{i18n .Lang "Send"}}</button>
-    </form>
-</div>
 
-<div class="container">
+<div class="container" >
+    <button type="button" style="float: right;margin-top: 15px;" class="btn btn-default"><a href="/chartRoom">{{i18n .Lang "logout"}}</a></button>
+</div>
+<div class="container" style="max-height: 480px;overflow-y: scroll;border: 2px solid #000000;padding: 10px;margin-top: 15px;">
     <h3>{{i18n .Lang "chat_history"}}:</h3>
     <ul id="chatbox">
         <li>{{i18n .Lang "welcome"}}</li>
     </ul>
 </div>
+
+<div class="container">
+    <h3>{{i18n .Lang "username"}}: <span id="uname">{{.UserName}}</span></h3>
+    <!-- <h4>{{i18n .Lang "send_box"}}:</h4> -->
+    <form class="form-inline">
+        <div class="col-md-12 form-group">
+            <textarea id="sendbox" cols=80 rows=10 class="form-control" style="width: 100%;" onkeydown="if(event.keyCode==13)return false;" required></textarea>
+            <!-- <input id="sendbox" type="text" class="form-control" onkeydown="if(event.keyCode==13)return false;" required> -->
+            <button id="sendbtn" type="button" style="float: right;margin-top: 15px;" class="btn btn-default">{{i18n .Lang "Send"}}</button>
+        </div>
+    </form>
+</div>
+
 {{end}}

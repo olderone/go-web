@@ -2,17 +2,11 @@ package controllers
 
 import(
 	"web/models"
-	"github.com/astaxie/beego"
 	"time"
 )
 
 type LongPollingController struct{
 	baseController
-}
-
-func init() {
-	beego.Trace("开启了协程: ")
-	go chatroom()
 }
 
 func (this *LongPollingController) Join() {
