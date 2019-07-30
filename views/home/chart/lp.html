@@ -5,12 +5,12 @@
 {{define "body"}}
 
 <div class="container" >
-    <button type="button" style="float: right;margin-top: 15px;" class="btn btn-default"><a href="/chartRoom">{{i18n .Lang "logout"}}</a></button>
+    <button type="button" style="float: right;margin-top: 15px;" class="btn btn-default"><a href="/chartRoom">登出</a></button>
 </div>
 
 <div class="container" style="max-height: 500px;overflow-y: scroll;border: 2px solid #000000;padding: 10px;">
     <ul id="chatbox">
-        <li>{{i18n .Lang "welcome"}}</li>
+        <li>欢迎</li>
     </ul>
 </div>
 <div class="container">
@@ -19,7 +19,7 @@
         <div class="col-md-12 form-group" style="position: relative;">
             <textarea id="sendbox" cols=80 rows=10 class="form-control" style="width: 100%;" onkeydown="if(event.keyCode==13)return false;" required></textarea>
             <!-- <input id="sendbox" type="text" class="form-control" onkeydown="if(event.keyCode==13)return false;" required> -->
-            <button id="sendbtn" type="button" class="btn btn-default" style="position: absolute;bottom: 15px;right: 30px;">{{i18n .Lang "Send"}}</button>
+            <button id="sendbtn" type="button" class="btn btn-default" style="position: absolute;bottom: 15px;right: 30px;">发送</button>
         </div>
     </form>
 </div>
